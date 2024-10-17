@@ -4,6 +4,8 @@ import { EmptyGoals } from './components/empty-goals'
 import { Summary } from './components/summary'
 import { useQuery } from '@tanstack/react-query'
 import { getSummary } from './http/get-summary'
+import 'react-toastify/dist/ReactToastify.css'
+import { Toastify } from './components/toastify'
 
 export function App() {
   const { data } = useQuery({
@@ -17,6 +19,8 @@ export function App() {
       {data?.total && data.total > 0 ? <Summary /> : <EmptyGoals />}
 
       <CreateGoal />
+
+      <Toastify />
     </Dialog>
   )
 }

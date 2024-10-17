@@ -18,6 +18,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createGoal } from '../http/create-goal'
 import { useQueryClient } from '@tanstack/react-query'
+import { toast } from 'react-toastify'
 
 const createGoalForm = z.object({
   title: z.string().min(1, 'Informe a atividade a ser realizada!'),
@@ -43,6 +44,7 @@ export function CreateGoal() {
       desiredWeeklyFrequency,
     })
 
+    toast.success('Meta criada com sucesso!')
     reset()
 
     queryClient.invalidateQueries({ queryKey: ['summary'] })
