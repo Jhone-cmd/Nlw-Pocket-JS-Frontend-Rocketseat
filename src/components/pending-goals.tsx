@@ -3,29 +3,23 @@ import { OutlineButton } from './ui/outline-button'
 import { getPendingGoals } from '../http/get-pending-goals'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { createGoalCompletion } from '../http/create-goal-completion'
-import { toast } from 'react-toastify'
 
 export function PendingGoals() {
   const queryClient = useQueryClient()
 
-  const { data } = useQuery({
+  const { data, fetchStatus } = useQuery({
     queryKey: ['pending-goals'],
     queryFn: getPendingGoals,
     staleTime: 1000 * 60, // 60 seconds,
   })
 
-  console.log(data)
+  console.log(fetchStatus)
 
   async function handleCreateGoalCompletion(goalId: string) {
-    try {
-      await createGoalCompletion(goalId)
+    await createGoalCompletion(goalId)
 
-      queryClient.invalidateQueries({ queryKey: ['summary'] })
-      queryClient.invalidateQueries({ queryKey: ['pending-goals'] })
-      toast.success('Meta concluída com sucesso!')
-    } catch (error) {
-      toast.error('Não foi possível concluir a meta')
-    }
+    queryClient.invalidateQueries({ queryKey: ['summary'] })
+    queryClient.invalidateQueries({ queryKey: ['pending-goals'] })
   }
 
   if (!data) return null
