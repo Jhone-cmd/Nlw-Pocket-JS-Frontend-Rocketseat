@@ -12,7 +12,7 @@ type SummaryResponse = {
 };
 
 export async function getSummary(): Promise<SummaryResponse> {
-  const response = await fetch("http://localhost:3333/summary");
+  const response = await fetch(`${process.env.API_inOrbit}/summary`);
   const data = await response.json();
 
   return data.summary;

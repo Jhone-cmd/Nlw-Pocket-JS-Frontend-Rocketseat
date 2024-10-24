@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 
 export async function createGoalCompletion(goalId: string) {
-  const api = await fetch("http://localhost:3333/completions", {
+  const api = await fetch(`${process.env.API_inOrbit}/completions`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

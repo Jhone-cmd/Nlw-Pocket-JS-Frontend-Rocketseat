@@ -7,13 +7,11 @@ import { createGoalCompletion } from '../http/create-goal-completion'
 export function PendingGoals() {
   const queryClient = useQueryClient()
 
-  const { data, fetchStatus } = useQuery({
+  const { data } = useQuery({
     queryKey: ['pending-goals'],
     queryFn: getPendingGoals,
     staleTime: 1000 * 60, // 60 seconds,
   })
-
-  console.log(fetchStatus)
 
   async function handleCreateGoalCompletion(goalId: string) {
     await createGoalCompletion(goalId)

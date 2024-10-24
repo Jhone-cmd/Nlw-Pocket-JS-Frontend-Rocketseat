@@ -7,7 +7,7 @@ export async function createGoal({
   title,
   desiredWeeklyFrequency,
 }: CreateGoal) {
-  await fetch("http://localhost:3333/goals", {
+  await fetch(`${process.env.API_inOrbit}/goals`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
