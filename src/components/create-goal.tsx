@@ -52,8 +52,8 @@ export function CreateGoal() {
   }
 
   return (
-    <DialogContent>
-      <div className="flex flex-col gap-3 h-full">
+    <DialogContent className='overflow-y-scroll'>
+      <div className="flex flex-col gap-3 h-full overflow-y-scroll">
         <div className="flex items-center justify-between">
           <DialogTitle>Cadastrar Meta</DialogTitle>
           <DialogClose>
